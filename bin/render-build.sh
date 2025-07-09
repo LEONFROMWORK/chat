@@ -3,9 +3,11 @@
 set -o errexit
 
 bundle install
-bundle exec rake assets:precompile
-bundle exec rake assets:clean
+
+# Skip assets precompile since we're using CDN for Tailwind
+# bundle exec rake assets:precompile
+# bundle exec rake assets:clean
 
 # Create database if it doesn't exist
 bundle exec rake db:create RAILS_ENV=production || true
-bundle exec rake db:migrate
+bundle exec rake db:migrate RAILS_ENV=production
