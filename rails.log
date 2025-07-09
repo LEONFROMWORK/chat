@@ -1,0 +1,251 @@
+=> Booting Puma
+=> Rails 8.0.2 application starting in development 
+=> Run `bin/rails server --help` for more startup options
+Puma starting in single mode...
+* Puma version: 6.6.0 ("Return to Forever")
+* Ruby version: ruby 3.4.4 (2025-05-14 revision a38531fd3f) +YJIT +PRISM [arm64-darwin24]
+*  Min threads: 3
+*  Max threads: 3
+*  Environment: development
+*          PID: 36982
+* Listening on http://127.0.0.1:3001
+* Listening on http://[::1]:3001
+Use Ctrl-C to stop
+Started HEAD "/" for ::1 at 2025-07-10 02:36:21 +0900
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Ttt'*/[0m
+Processing by ChatRoomsController#index as */*
+Redirected to http://localhost:3001/login
+Filter chain halted as :require_user rendered or redirected
+Completed 302 Found in 243ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2025-07-10 02:36:29 +0900
+Processing by SessionsController#new as */*
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 22.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 61.7ms | GC: 0.0ms)
+Completed 200 OK in 229ms (Views: 85.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2025-07-10 02:36:31 +0900
+Processing by ChatRoomsController#index as HTML
+Redirected to http://localhost:3001/login
+Filter chain halted as :require_user rendered or redirected
+Completed 302 Found in 103ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2025-07-10 02:36:31 +0900
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 24.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 29.5ms | GC: 0.0ms)
+Completed 200 OK in 117ms (Views: 30.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/assets/application-8b441ae0.css" for ::1 at 2025-07-10 02:36:31 +0900
+Started GET "/assets/application-bfcdf840.js" for ::1 at 2025-07-10 02:36:31 +0900
+Started GET "/assets/tailwind-e0c7e7b5.css" for ::1 at 2025-07-10 02:36:31 +0900
+Started GET "/assets/controllers/application-3affb389.js" for ::1 at 2025-07-10 02:36:32 +0900
+Started GET "/assets/controllers/hello_controller-708796bd.js" for ::1 at 2025-07-10 02:36:32 +0900
+Started GET "/assets/controllers/index-ee64e1f1.js" for ::1 at 2025-07-10 02:36:32 +0900
+Started GET "/.well-known/appspecific/com.chrome.devtools.json" for ::1 at 2025-07-10 02:36:32 +0900
+  
+ActionController::RoutingError (No route matches [GET] "/.well-known/appspecific/com.chrome.devtools.json"):
+  
+Started GET "/assets/turbo.min-3a2e143f.js" for ::1 at 2025-07-10 02:36:32 +0900
+Started GET "/assets/stimulus.min-4b1e420e.js" for ::1 at 2025-07-10 02:36:32 +0900
+Started GET "/assets/stimulus-loading-1fc53fe7.js" for ::1 at 2025-07-10 02:36:33 +0900
+Started GET "/assets/stimulus.min-2395e199.js.map" for ::1 at 2025-07-10 02:36:33 +0900
+Started GET "/assets/turbo.min-5f3b7fda.js.map" for ::1 at 2025-07-10 02:36:33 +0900
+Started GET "/" for ::1 at 2025-07-10 02:36:56 +0900
+Processing by ChatRoomsController#index as HTML
+Redirected to http://localhost:3001/login
+Filter chain halted as :require_user rendered or redirected
+Completed 302 Found in 89ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2025-07-10 02:36:56 +0900
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 28.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 31.9ms | GC: 0.0ms)
+Completed 200 OK in 140ms (Views: 51.7ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/.well-known/appspecific/com.chrome.devtools.json" for ::1 at 2025-07-10 02:36:56 +0900
+  
+ActionController::RoutingError (No route matches [GET] "/.well-known/appspecific/com.chrome.devtools.json"):
+  
+Started GET "/login" for ::1 at 2025-07-10 02:37:35 +0900
+Processing by SessionsController#new as */*
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 9.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 29.5ms | GC: 0.0ms)
+Completed 200 OK in 138ms (Views: 34.8ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2025-07-10 02:37:58 +0900
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 10.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 17.9ms | GC: 0.0ms)
+Completed 200 OK in 102ms (Views: 19.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/.well-known/appspecific/com.chrome.devtools.json" for ::1 at 2025-07-10 02:37:58 +0900
+  
+ActionController::RoutingError (No route matches [GET] "/.well-known/appspecific/com.chrome.devtools.json"):
+  
+Started POST "/login" for ::1 at 2025-07-10 02:38:15 +0900
+Processing by SessionsController#create as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "session" => {"name" => "권혁진", "email" => "[FILTERED]"}, "commit" => "Enter Chat"}
+  [1m[36mUser Load (13.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'brushlab@naver.com' LIMIT 1 /*action='create',application='Ttt',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:6:in 'SessionsController#create'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='create',application='Ttt',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:12:in 'SessionsController#create'
+  [1m[36mUser Exists? (13.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'brushlab@naver.com' LIMIT 1 /*action='create',application='Ttt',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:12:in 'SessionsController#create'
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ('권혁진', 'brushlab@naver.com', '2025-07-09 17:38:16.162125', '2025-07-09 17:38:16.162125') RETURNING "id" /*action='create',application='Ttt',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:12:in 'SessionsController#create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='create',application='Ttt',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:12:in 'SessionsController#create'
+Redirected to http://localhost:3001/
+Completed 302 Found in 370ms (ActiveRecord: 39.9ms (3 queries, 0 cached) | GC: 15.7ms)
+
+
+Started GET "/" for ::1 at 2025-07-10 02:38:16 +0900
+Processing by ChatRoomsController#index as TURBO_STREAM
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Ttt',controller='chat_rooms'*/[0m
+  ↳ app/controllers/application_controller.rb:8:in 'ApplicationController#current_user'
+  [1m[36mChatRoom Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "chat_rooms" LIMIT 1 /*action='index',application='Ttt',controller='chat_rooms'*/[0m
+  ↳ app/controllers/chat_rooms_controller.rb:7:in 'ChatRoomsController#index'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='index',application='Ttt',controller='chat_rooms'*/[0m
+  ↳ app/controllers/chat_rooms_controller.rb:8:in 'ChatRoomsController#index'
+  [1m[36mChatRoom Create (3.3ms)[0m  [1m[32mINSERT INTO "chat_rooms" ("name", "created_at", "updated_at") VALUES ('General', '2025-07-09 17:38:16.592788', '2025-07-09 17:38:16.592788') RETURNING "id" /*action='index',application='Ttt',controller='chat_rooms'*/[0m
+  ↳ app/controllers/chat_rooms_controller.rb:8:in 'ChatRoomsController#index'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='index',application='Ttt',controller='chat_rooms'*/[0m
+  ↳ app/controllers/chat_rooms_controller.rb:8:in 'ChatRoomsController#index'
+  Rendering layout layouts/application.html.erb
+  Rendering chat_rooms/index.html.erb within layouts/application
+  [1m[36mChatRoom Load (0.4ms)[0m  [1m[34mSELECT "chat_rooms".* FROM "chat_rooms" /*action='index',application='Ttt',controller='chat_rooms'*/[0m
+  ↳ app/views/chat_rooms/index.html.erb:5
+  Rendered chat_rooms/index.html.erb within layouts/application (Duration: 22.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 33.5ms | GC: 0.0ms)
+Completed 200 OK in 492ms (Views: 44.8ms | ActiveRecord: 5.8ms (4 queries, 0 cached) | GC: 3.0ms)
+
+
+Started GET "/chat_rooms/1" for ::1 at 2025-07-10 02:38:18 +0900
+Processing by ChatRoomsController#show as HTML
+  Parameters: {"id" => "1"}
+  [1m[36mUser Load (3.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='show',application='Ttt',controller='chat_rooms'*/[0m
+  ↳ app/controllers/application_controller.rb:8:in 'ApplicationController#current_user'
+  [1m[36mChatRoom Load (0.7ms)[0m  [1m[34mSELECT "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = 1 LIMIT 1 /*action='show',application='Ttt',controller='chat_rooms'*/[0m
+  ↳ app/controllers/chat_rooms_controller.rb:14:in 'ChatRoomsController#show'
+  [1m[36mMessage Load (1.3ms)[0m  [1m[34mSELECT "messages".* FROM "messages" WHERE "messages"."chat_room_id" = 1 ORDER BY "messages"."created_at" DESC LIMIT 50 /*action='show',application='Ttt',controller='chat_rooms'*/[0m
+  ↳ app/controllers/chat_rooms_controller.rb:15:in 'ChatRoomsController#show'
+  Rendering layout layouts/application.html.erb
+  Rendering chat_rooms/show.html.erb within layouts/application
+  Rendered chat_rooms/show.html.erb within layouts/application (Duration: 19.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 26.9ms | GC: 0.0ms)
+Completed 200 OK in 420ms (Views: 28.8ms | ActiveRecord: 6.6ms (3 queries, 0 cached) | GC: 6.2ms)
+
+
+Started POST "/chat_rooms/1/messages" for ::1 at 2025-07-10 02:38:24 +0900
+Processing by MessagesController#create as TURBO_STREAM
+  Parameters: {"authenticity_token" => "[FILTERED]", "message" => {"content" => "ki"}, "commit" => "Send", "chat_room_id" => "1"}
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='create',application='Ttt',controller='messages'*/[0m
+  ↳ app/controllers/application_controller.rb:8:in 'ApplicationController#current_user'
+  [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = 1 LIMIT 1 /*action='create',application='Ttt',controller='messages'*/[0m
+  ↳ app/controllers/messages_controller.rb:5:in 'MessagesController#create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*action='create',application='Ttt',controller='messages'*/[0m
+  ↳ app/controllers/messages_controller.rb:9:in 'MessagesController#create'
+  [1m[36mMessage Create (5.3ms)[0m  [1m[32mINSERT INTO "messages" ("content", "user_id", "chat_room_id", "created_at", "updated_at") VALUES ('ki', 1, 1, '2025-07-09 17:38:24.237333', '2025-07-09 17:38:24.237333') RETURNING "id" /*action='create',application='Ttt',controller='messages'*/[0m
+  ↳ app/controllers/messages_controller.rb:9:in 'MessagesController#create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT TRANSACTION /*action='create',application='Ttt',controller='messages'*/[0m
+  ↳ app/controllers/messages_controller.rb:9:in 'MessagesController#create'
+Redirected to http://localhost:3001/chat_rooms/1
+Completed 302 Found in 185ms (ActiveRecord: 8.9ms (3 queries, 0 cached) | GC: 1.6ms)
+
+
+Started GET "/chat_rooms/1" for ::1 at 2025-07-10 02:38:24 +0900
+Processing by ChatRoomsController#show as TURBO_STREAM
+  Parameters: {"id" => "1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='show',application='Ttt',controller='chat_rooms'*/[0m
+  ↳ app/controllers/application_controller.rb:8:in 'ApplicationController#current_user'
+  [1m[36mChatRoom Load (0.2ms)[0m  [1m[34mSELECT "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = 1 LIMIT 1 /*action='show',application='Ttt',controller='chat_rooms'*/[0m
+  ↳ app/controllers/chat_rooms_controller.rb:14:in 'ChatRoomsController#show'
+  [1m[36mMessage Load (0.3ms)[0m  [1m[34mSELECT "messages".* FROM "messages" WHERE "messages"."chat_room_id" = 1 ORDER BY "messages"."created_at" DESC LIMIT 50 /*action='show',application='Ttt',controller='chat_rooms'*/[0m
+  ↳ app/controllers/chat_rooms_controller.rb:15:in 'ChatRoomsController#show'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 /*action='show',application='Ttt',controller='chat_rooms'*/[0m
+  ↳ app/controllers/chat_rooms_controller.rb:15:in 'ChatRoomsController#show'
+  Rendering layout layouts/application.html.erb
+  Rendering chat_rooms/show.html.erb within layouts/application
+  Rendered chat_rooms/show.html.erb within layouts/application (Duration: 6.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 14.2ms | GC: 0.0ms)
+Completed 200 OK in 164ms (Views: 15.3ms | ActiveRecord: 1.2ms (4 queries, 0 cached) | GC: 0.6ms)
+
+
+Started GET "/chat_rooms" for ::1 at 2025-07-10 02:38:58 +0900
+Processing by ChatRoomsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Ttt',controller='chat_rooms'*/[0m
+  ↳ app/controllers/application_controller.rb:8:in 'ApplicationController#current_user'
+  [1m[36mChatRoom Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "chat_rooms" LIMIT 1 /*action='index',application='Ttt',controller='chat_rooms'*/[0m
+  ↳ app/controllers/chat_rooms_controller.rb:7:in 'ChatRoomsController#index'
+  Rendering layout layouts/application.html.erb
+  Rendering chat_rooms/index.html.erb within layouts/application
+  [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT "chat_rooms".* FROM "chat_rooms" /*action='index',application='Ttt',controller='chat_rooms'*/[0m
+  ↳ app/views/chat_rooms/index.html.erb:5
+  Rendered chat_rooms/index.html.erb within layouts/application (Duration: 10.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.3ms | GC: 0.0ms)
+Completed 200 OK in 106ms (Views: 13.1ms | ActiveRecord: 0.7ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/chat_rooms/1" for ::1 at 2025-07-10 02:39:01 +0900
+Processing by ChatRoomsController#show as HTML
+  Parameters: {"id" => "1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='show',application='Ttt',controller='chat_rooms'*/[0m
+  ↳ app/controllers/application_controller.rb:8:in 'ApplicationController#current_user'
+  [1m[36mChatRoom Load (0.5ms)[0m  [1m[34mSELECT "chat_rooms".* FROM "chat_rooms" WHERE "chat_rooms"."id" = 1 LIMIT 1 /*action='show',application='Ttt',controller='chat_rooms'*/[0m
+  ↳ app/controllers/chat_rooms_controller.rb:14:in 'ChatRoomsController#show'
+  [1m[36mMessage Load (0.3ms)[0m  [1m[34mSELECT "messages".* FROM "messages" WHERE "messages"."chat_room_id" = 1 ORDER BY "messages"."created_at" DESC LIMIT 50 /*action='show',application='Ttt',controller='chat_rooms'*/[0m
+  ↳ app/controllers/chat_rooms_controller.rb:15:in 'ChatRoomsController#show'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 /*action='show',application='Ttt',controller='chat_rooms'*/[0m
+  ↳ app/controllers/chat_rooms_controller.rb:15:in 'ChatRoomsController#show'
+  Rendering layout layouts/application.html.erb
+  Rendering chat_rooms/show.html.erb within layouts/application
+  Rendered chat_rooms/show.html.erb within layouts/application (Duration: 6.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 14.1ms | GC: 0.0ms)
+Completed 200 OK in 173ms (Views: 19.1ms | ActiveRecord: 1.2ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for ::1 at 2025-07-10 02:39:12 +0900
+Processing by ChatRoomsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Ttt',controller='chat_rooms'*/[0m
+  ↳ app/controllers/application_controller.rb:8:in 'ApplicationController#current_user'
+  [1m[36mChatRoom Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "chat_rooms" LIMIT 1 /*action='index',application='Ttt',controller='chat_rooms'*/[0m
+  ↳ app/controllers/chat_rooms_controller.rb:7:in 'ChatRoomsController#index'
+  Rendering layout layouts/application.html.erb
+  Rendering chat_rooms/index.html.erb within layouts/application
+  [1m[36mChatRoom Load (0.1ms)[0m  [1m[34mSELECT "chat_rooms".* FROM "chat_rooms" /*action='index',application='Ttt',controller='chat_rooms'*/[0m
+  ↳ app/views/chat_rooms/index.html.erb:5
+  Rendered chat_rooms/index.html.erb within layouts/application (Duration: 3.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 21.8ms | GC: 0.0ms)
+Completed 200 OK in 113ms (Views: 24.7ms | ActiveRecord: 0.4ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2025-07-10 02:39:18 +0900
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 31.6ms | GC: 0.0ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='new',application='Ttt',controller='sessions'*/[0m
+  ↳ app/controllers/application_controller.rb:8:in 'ApplicationController#current_user'
+  Rendered layout layouts/application.html.erb (Duration: 54.7ms | GC: 0.0ms)
+Completed 200 OK in 132ms (Views: 56.4ms | ActiveRecord: 0.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+

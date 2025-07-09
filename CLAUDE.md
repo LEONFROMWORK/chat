@@ -4,29 +4,57 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-This directory (`/Users/kevin/ttt`) is currently empty and ready for a new project. No existing codebase or project structure has been established yet.
+This is a Ruby on Rails chat application with Tailwind CSS for styling. The app provides basic chat room functionality with user authentication.
 
-## Getting Started
+## Development Commands
 
-When initializing a new project in this directory, consider:
+**Start the development server:**
+```bash
+bin/dev
+```
+This runs both Rails server and Tailwind CSS build process.
 
-1. **For a Ruby on Rails project with Tailwind CSS** (as mentioned in the user's previous context):
-   ```bash
-   rails new . --css tailwind
-   ```
+**Database commands:**
+```bash
+rails db:create     # Create the database
+rails db:migrate    # Run migrations
+rails db:seed       # Seed the database (if seeds are added)
+```
 
-2. **For other project types**, use the appropriate initialization command:
-   - Node.js: `npm init` or `yarn init`
-   - Python: `python -m venv venv` or `poetry init`
-   - Go: `go mod init [module-name]`
+**Rails console:**
+```bash
+rails console       # Interactive Ruby console with app loaded
+```
 
-## Next Steps
+## Architecture
 
-Once a project is initialized, update this CLAUDE.md file with:
-- Project-specific build and run commands
-- Testing commands
-- Code architecture overview
-- Any project-specific conventions or patterns
+The application follows standard Rails MVC architecture:
 
+- **Models**: User, ChatRoom, Message
+  - Users can have many messages
+  - ChatRooms can have many messages
+  - Messages belong to both User and ChatRoom
 
-- TEST
+- **Controllers**:
+  - SessionsController: Handles user login/logout
+  - ChatRoomsController: Lists rooms and shows individual chat rooms
+  - MessagesController: Handles message creation
+
+- **Authentication**: Simple session-based authentication
+  - No password required (email-based)
+  - Creates user automatically on first login
+
+## Key Features
+
+- Multiple chat rooms
+- Real-time message display (page refresh required)
+- User authentication
+- Responsive Tailwind CSS design
+
+## Next Steps for Enhancement
+
+- Add Action Cable for real-time messaging
+- Add user avatars
+- Add message timestamps formatting
+- Add room creation functionality
+- Add message editing/deletion
