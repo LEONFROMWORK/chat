@@ -7,9 +7,12 @@ class MessagesController < ApplicationController
     @message.user = current_user
     
     if @message.save
-      # Broadcast to Action Cable (다른 사용자들에게만)
+      # 렌더링된 메시지 HTML
+      rendered_message = render_to_string(partial: 'messages/message', locals: { message: @message })
+      
+      # Action Cable로 브로드캐스트 (기존 방식 유지)
       ChatRoomChannel.broadcast_to(@chat_room, {
-        message: render_to_string(partial: 'messages/message', locals: { message: @message }),
+        message: rendered_message,
         sender_id: current_user.id,
         message_id: @message.id
       })

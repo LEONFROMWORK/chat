@@ -3,10 +3,18 @@ import consumer from "channels/consumer"
 
 export default class extends Controller {
   static targets = ["messages", "messageInput"]
-  static values = { chatRoomId: Number }
+  static values = { 
+    chatRoomId: Number,
+    currentUserId: Number
+  }
 
   connect() {
-    console.log("ChatRoom controller connected", this.chatRoomIdValue)
+    console.log("ChatRoom controller connected", this.chatRoomIdValue, "User:", this.currentUserIdValue)
+    
+    // 메시지 ID 추적 (중복 방지)
+    this.processedMessageIds = new Set()
+    this.trackExistingMessages()
+    
     this.subscription = this.createSubscription()
     this.scrollToBottom()
     console.log("Subscription created:", this.subscription)
@@ -48,8 +56,29 @@ export default class extends Controller {
 
         received: (data) => {
           console.log('Received broadcast:', data)
-          this.messagesTarget.insertAdjacentHTML('beforeend', data.message)
-          this.scrollToBottom()
+          
+          // 중복 방지 로직
+          if (data.message_id) {
+            if (this.processedMessageIds.has(data.message_id)) {
+              console.log('Duplicate message ignored:', data.message_id)
+              return
+            }
+            
+            // 자신이 보낸 메시지는 무시 (Turbo Stream으로 이미 추가됨)
+            if (data.sender_id === this.currentUserIdValue) {
+              console.log('Own message ignored from broadcast:', data.message_id)
+              this.processedMessageIds.add(data.message_id)
+              return
+            }
+            
+            this.processedMessageIds.add(data.message_id)
+          }
+          
+          // 메시지 추가
+          if (data.message) {
+            this.messagesTarget.insertAdjacentHTML('beforeend', data.message)
+            this.scrollToBottom()
+          }
         }
       }
     )
@@ -75,5 +104,17 @@ export default class extends Controller {
     if (this.messagesTarget) {
       this.messagesTarget.scrollTop = this.messagesTarget.scrollHeight
     }
+  }
+  
+  trackExistingMessages() {
+    // 페이지 로드 시 이미 표시된 메시지들의 ID를 추적
+    const existingMessages = this.messagesTarget.querySelectorAll('[data-message-id]')
+    existingMessages.forEach(messageEl => {
+      const messageId = parseInt(messageEl.dataset.messageId)
+      if (messageId) {
+        this.processedMessageIds.add(messageId)
+      }
+    })
+    console.log('Tracking existing messages:', this.processedMessageIds.size)
   }
 }
