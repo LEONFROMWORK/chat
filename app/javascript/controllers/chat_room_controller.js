@@ -59,19 +59,28 @@ export default class extends Controller {
           
           // 중복 방지 로직
           if (data.message_id) {
-            if (this.processedMessageIds.has(data.message_id)) {
+            // 로컬 또는 전역 처리된 메시지 확인
+            if (this.processedMessageIds.has(data.message_id) || 
+                (window.processedMessageIds && window.processedMessageIds.has(data.message_id))) {
               console.log('Duplicate message ignored:', data.message_id)
               return
             }
             
             // 자신이 보낸 메시지는 무시 (Turbo Stream으로 이미 추가됨)
-            if (data.sender_id === this.currentUserIdValue) {
+            const currentUserId = this.currentUserIdValue || window.currentUserId;
+            if (data.sender_id === currentUserId) {
               console.log('Own message ignored from broadcast:', data.message_id)
               this.processedMessageIds.add(data.message_id)
+              if (window.processedMessageIds) {
+                window.processedMessageIds.add(data.message_id);
+              }
               return
             }
             
             this.processedMessageIds.add(data.message_id)
+            if (window.processedMessageIds) {
+              window.processedMessageIds.add(data.message_id);
+            }
           }
           
           // 메시지 추가
