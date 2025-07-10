@@ -16,7 +16,7 @@
     </div>
     
     <div class="border-t p-4">
-      <%= form_with model: [@chat_room, @message], local: true, class: "flex gap-2" do |form| %>
+      <%= form_with model: [@chat_room, @message], local: true, data: { turbo: false }, class: "flex gap-2" do |form| %>
         <%= form.text_field :content, placeholder: "Type your message...", 
             class: "flex-1 border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500",
             autocomplete: "off", required: true %>
@@ -28,6 +28,10 @@
 
 <script>
   // Auto-scroll to bottom
-  const messagesDiv = document.getElementById('messages');
-  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  document.addEventListener('DOMContentLoaded', function() {
+    const messages = document.getElementById('messages');
+    if (messages) {
+      messages.scrollTop = messages.scrollHeight;
+    }
+  });
 </script>
