@@ -17,6 +17,26 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <script src="https://cdn.tailwindcss.com"></script>
     <%= javascript_importmap_tags %>
+    
+    <style>
+      .connection-status {
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.875rem;
+      }
+      .status-connecting {
+        background-color: #fef3c7;
+        color: #92400e;
+      }
+      .status-connected {
+        background-color: #d1fae5;
+        color: #065f46;
+      }
+      .status-disconnected {
+        background-color: #fee2e2;
+        color: #991b1b;
+      }
+    </style>
   </head>
 
   <body class="bg-gray-100">
