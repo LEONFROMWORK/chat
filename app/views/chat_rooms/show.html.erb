@@ -1,19 +1,19 @@
-<div class="max-w-4xl mx-auto">
+<div class="max-w-4xl mx-auto" data-controller="chat-room" data-chat-room-chat-room-id-value="<%= @chat_room.id %>">
   <div class="flex justify-between items-center mb-6">
     <h2 class="text-2xl font-bold"><%= @chat_room.name %></h2>
     <%= link_to "← Back to Rooms", chat_rooms_path, class: "text-blue-500 hover:text-blue-700" %>
   </div>
   
   <div class="bg-white rounded-lg shadow-lg h-96 flex flex-col">
-    <div class="flex-1 overflow-y-auto p-4" id="messages" data-chat-room-id="<%= @chat_room.id %>">
+    <div class="flex-1 overflow-y-auto p-4" data-chat-room-target="messages">
       <% @messages.each do |message| %>
         <%= render 'messages/message', message: message %>
       <% end %>
     </div>
     
     <div class="border-t p-4">
-      <form id="message-form" class="flex gap-2">
-        <input type="text" id="message-input" placeholder="Type your message..." 
+      <form data-action="submit->chat-room#sendMessage" class="flex gap-2">
+        <input type="text" data-chat-room-target="messageInput" placeholder="Type your message..." 
             class="flex-1 border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             autocomplete="off" required>
         <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg">Send</button>
@@ -21,60 +21,3 @@
     </div>
   </div>
 </div>
-
-<script type="module">
-  import consumer from "channels/consumer";
-  
-  document.addEventListener('DOMContentLoaded', function() {
-    const messages = document.getElementById('messages');
-    const messageForm = document.getElementById('message-form');
-    const messageInput = document.getElementById('message-input');
-    const chatRoomId = messages.dataset.chatRoomId;
-    
-    // Auto-scroll to bottom
-    function scrollToBottom() {
-      if (messages) {
-        messages.scrollTop = messages.scrollHeight;
-      }
-    }
-    
-    scrollToBottom();
-    
-    // Set up Action Cable subscription
-    const subscription = consumer.subscriptions.create(
-      { 
-        channel: "ChatRoomChannel",
-        chat_room_id: chatRoomId
-      },
-      {
-        connected() {
-          console.log('Connected to ChatRoomChannel');
-        },
-
-        disconnected() {
-          console.log('Disconnected from ChatRoomChannel');
-        },
-
-        received(data) {
-          messages.insertAdjacentHTML('beforeend', data.message);
-          scrollToBottom();
-        },
-        
-        speak(message) {
-          this.perform('speak', { message: message });
-        }
-      }
-    );
-    
-    // Handle form submission
-    messageForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const message = messageInput.value.trim();
-      
-      if (message.length > 0) {
-        subscription.speak(message);
-        messageInput.value = '';
-      }
-    });
-  });
-</script>
