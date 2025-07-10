@@ -4,17 +4,23 @@ import { WebSocketReconnector } from "./websocket_reconnect_controller"
 
 export default class extends Controller {
   static targets = ["messages", "messageInput", "connectionStatus"]
-  static values = { chatRoomId: Number }
+  static values = { 
+    chatRoomId: Number,
+    currentUserId: Number
+  }
 
   // Ping 설정
   PING_INTERVAL = 50000 // 50초마다 ping (60초 타임아웃보다 짧게)
   PONG_TIMEOUT = 5000   // 5초 내에 pong 응답이 없으면 재연결
 
   connect() {
-    console.log("ChatRoom controller connected", this.chatRoomIdValue)
+    console.log("ChatRoom controller connected", this.chatRoomIdValue, "User:", this.currentUserIdValue)
     
     // 재연결 관리자 초기화
     this.reconnector = new WebSocketReconnector(consumer)
+    
+    // 메시지 ID 추적 (중복 방지)
+    this.processedMessageIds = new Set()
     
     // 구독 생성
     this.subscription = this.createSubscription()
@@ -22,6 +28,9 @@ export default class extends Controller {
     // 초기 UI 설정
     this.scrollToBottom()
     this.updateConnectionStatus('connecting')
+    
+    // 기존 메시지 ID 추적 (중복 방지)
+    this.trackExistingMessages()
     
     // Ping 시작
     this.startPingInterval()
@@ -79,24 +88,55 @@ export default class extends Controller {
   handleReceivedData(data) {
     console.log('Received:', data)
     
-    switch(data.type) {
-      case 'welcome':
-        console.log('Welcome message received')
-        break
-      case 'pong':
-        this.handlePong(data)
-        break
-      case 'message':
-        // 기존 메시지 처리 로직
-        this.messagesTarget.insertAdjacentHTML('beforeend', data.message)
-        this.scrollToBottom()
-        break
-      default:
-        // Action Cable broadcast로 온 메시지
-        if (data.message) {
-          this.messagesTarget.insertAdjacentHTML('beforeend', data.message)
-          this.scrollToBottom()
-        }
+    // 특별한 메시지 타입 처리
+    if (data.type) {
+      switch(data.type) {
+        case 'welcome':
+          console.log('Welcome message received')
+          break
+        case 'pong':
+          this.handlePong(data)
+          break
+        default:
+          console.log('Unknown message type:', data.type)
+      }
+      return
+    }
+    
+    // 일반 채팅 메시지 처리
+    if (data.message && data.message_id) {
+      // 중복 메시지 방지
+      if (this.processedMessageIds.has(data.message_id)) {
+        console.log('Duplicate message ignored:', data.message_id)
+        return
+      }
+      
+      // 자신이 보낸 메시지는 Action Cable로 받지 않음 (Turbo Stream으로 이미 추가됨)
+      if (data.sender_id === this.currentUserIdValue) {
+        console.log('Own message ignored from broadcast:', data.message_id)
+        return
+      }
+      
+      // 메시지 추가
+      console.log('Adding message from other user:', data.message_id)
+      this.processedMessageIds.add(data.message_id)
+      this.messagesTarget.insertAdjacentHTML('beforeend', data.message)
+      this.scrollToBottom()
+      
+      // 메시지 수신 시 사운드나 알림 (선택사항)
+      this.notifyNewMessage()
+    }
+  }
+  
+  notifyNewMessage() {
+    // 간단한 시각적 피드백
+    if (document.visibilityState === 'hidden') {
+      // 페이지가 백그라운드일 때 타이틀 변경
+      const originalTitle = document.title
+      document.title = '💬 새 메시지!'
+      setTimeout(() => {
+        document.title = originalTitle
+      }, 3000)
     }
   }
 
@@ -183,5 +223,17 @@ export default class extends Controller {
     if (this.messagesTarget) {
       this.messagesTarget.scrollTop = this.messagesTarget.scrollHeight
     }
+  }
+  
+  trackExistingMessages() {
+    // 페이지 로드 시 이미 표시된 메시지들의 ID를 추적
+    const existingMessages = this.messagesTarget.querySelectorAll('[data-message-id]')
+    existingMessages.forEach(messageEl => {
+      const messageId = parseInt(messageEl.dataset.messageId)
+      if (messageId) {
+        this.processedMessageIds.add(messageId)
+      }
+    })
+    console.log('Tracking existing messages:', this.processedMessageIds.size)
   }
 }

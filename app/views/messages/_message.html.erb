@@ -1,4 +1,4 @@
-<div class="mb-4 message-item" data-message-id="<%= message.id %>">
+<div class="mb-4 message-item" data-message-id="<%= message.id %>" data-sender-id="<%= message.user_id %>">
   <div class="font-semibold text-gray-700"><%= message.user.name %></div>
   <div class="text-gray-600"><%= message.content %></div>
   <div class="text-xs text-gray-400"><%= message.created_at.strftime("%l:%M %p") %></div>

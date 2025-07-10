@@ -18,9 +18,13 @@ export class WebSocketReconnector {
     
     setTimeout(() => {
       if (!this.consumer.connection.isOpen()) {
+        console.log('Attempting to reconnect WebSocket...')
         this.consumer.connection.open()
         this.reconnectAttempts++
         this.reconnectInterval = Math.min(this.reconnectInterval * 2, this.maxReconnectInterval)
+        
+        // 재연결 후 구독 재생성을 위한 이벤트 발생
+        window.dispatchEvent(new CustomEvent('websocket:reconnecting'))
       }
     }, this.reconnectInterval)
   }

@@ -1,4 +1,6 @@
-<div class="max-w-4xl mx-auto" data-controller="chat-room-optimized" data-chat-room-optimized-chat-room-id-value="<%= @chat_room.id %>">
+<div class="max-w-4xl mx-auto" data-controller="chat-room-optimized" 
+     data-chat-room-optimized-chat-room-id-value="<%= @chat_room.id %>"
+     data-chat-room-optimized-current-user-id-value="<%= current_user.id %>">
   <div class="flex justify-between items-center mb-6">
     <div class="flex items-center gap-4">
       <h2 class="text-2xl font-bold"><%= @chat_room.name %></h2>
