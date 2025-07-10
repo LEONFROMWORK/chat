@@ -1,0 +1,7 @@
+<%= turbo_stream.append "messages", partial: "messages/message", locals: { message: @message } %>
+<%= turbo_stream.after "messages" do %>
+  <script>
+    document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
+    document.querySelector('[data-chat-room-target="messageInput"]').value = '';
+  </script>
+<% end %>
