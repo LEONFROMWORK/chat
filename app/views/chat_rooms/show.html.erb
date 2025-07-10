@@ -5,33 +5,76 @@
   </div>
   
   <div class="bg-white rounded-lg shadow-lg h-96 flex flex-col">
-    <div class="flex-1 overflow-y-auto p-4" id="messages">
+    <div class="flex-1 overflow-y-auto p-4" id="messages" data-chat-room-id="<%= @chat_room.id %>">
       <% @messages.each do |message| %>
-        <div class="mb-4">
-          <div class="font-semibold text-gray-700"><%= message.user.name %></div>
-          <div class="text-gray-600"><%= message.content %></div>
-          <div class="text-xs text-gray-400"><%= message.created_at.strftime("%l:%M %p") %></div>
-        </div>
+        <%= render 'messages/message', message: message %>
       <% end %>
     </div>
     
     <div class="border-t p-4">
-      <%= form_with model: [@chat_room, @message], local: true, data: { turbo: false }, class: "flex gap-2" do |form| %>
-        <%= form.text_field :content, placeholder: "Type your message...", 
-            class: "flex-1 border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500",
-            autocomplete: "off", required: true %>
-        <%= form.submit "Send", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg" %>
-      <% end %>
+      <form id="message-form" class="flex gap-2">
+        <input type="text" id="message-input" placeholder="Type your message..." 
+            class="flex-1 border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            autocomplete="off" required>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg">Send</button>
+      </form>
     </div>
   </div>
 </div>
 
-<script>
-  // Auto-scroll to bottom
+<script type="module">
+  import consumer from "channels/consumer";
+  
   document.addEventListener('DOMContentLoaded', function() {
     const messages = document.getElementById('messages');
-    if (messages) {
-      messages.scrollTop = messages.scrollHeight;
+    const messageForm = document.getElementById('message-form');
+    const messageInput = document.getElementById('message-input');
+    const chatRoomId = messages.dataset.chatRoomId;
+    
+    // Auto-scroll to bottom
+    function scrollToBottom() {
+      if (messages) {
+        messages.scrollTop = messages.scrollHeight;
+      }
     }
+    
+    scrollToBottom();
+    
+    // Set up Action Cable subscription
+    const subscription = consumer.subscriptions.create(
+      { 
+        channel: "ChatRoomChannel",
+        chat_room_id: chatRoomId
+      },
+      {
+        connected() {
+          console.log('Connected to ChatRoomChannel');
+        },
+
+        disconnected() {
+          console.log('Disconnected from ChatRoomChannel');
+        },
+
+        received(data) {
+          messages.insertAdjacentHTML('beforeend', data.message);
+          scrollToBottom();
+        },
+        
+        speak(message) {
+          this.perform('speak', { message: message });
+        }
+      }
+    );
+    
+    // Handle form submission
+    messageForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const message = messageInput.value.trim();
+      
+      if (message.length > 0) {
+        subscription.speak(message);
+        messageInput.value = '';
+      }
+    });
   });
 </script>

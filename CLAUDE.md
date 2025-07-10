@@ -47,14 +47,14 @@ The application follows standard Rails MVC architecture:
 ## Key Features
 
 - Multiple chat rooms
-- Real-time message display (page refresh required)
+- Real-time message display using Action Cable WebSockets
 - User authentication
 - Responsive Tailwind CSS design
 
 ## Next Steps for Enhancement
 
-- Add Action Cable for real-time messaging
 - Add user avatars
 - Add message timestamps formatting
 - Add room creation functionality
 - Add message editing/deletion
+- Add user presence indicators

@@ -2,6 +2,8 @@ class MessagesController < ApplicationController
   before_action :require_user
   
   def create
+    # This is now handled by Action Cable
+    # Keeping this for fallback
     @chat_room = ChatRoom.find(params[:chat_room_id])
     @message = @chat_room.messages.build(message_params)
     @message.user = current_user

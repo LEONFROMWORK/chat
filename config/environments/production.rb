@@ -35,6 +35,11 @@ Rails.application.configure do
 
   # Skip http-to-https redirect for the default health check endpoint.
   # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
+  
+  # Action Cable configuration
+  config.action_cable.mount_path = '/cable'
+  config.action_cable.url = ENV['ACTION_CABLE_URL'] || 'wss://chat-29bz.onrender.com/cable'
+  config.action_cable.allowed_request_origins = [ 'https://chat-29bz.onrender.com', 'http://chat-29bz.onrender.com' ]
 
   # Log to STDOUT with the current request id as a default log tag.
   config.log_tags = [ :request_id ]
