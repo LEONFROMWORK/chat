@@ -1,19 +1,18 @@
+<%# 메시지 추가 (Turbo Stream) %>
 <%= turbo_stream.append "messages", partial: "messages/message", locals: { message: @message } %>
-<%= turbo_stream.after "messages" do %>
-  <script>
-    (function() {
-      // 메시지 ID를 전역 변수에 추가하여 Action Cable에서 필터링
-      if (!window.processedMessageIds) {
-        window.processedMessageIds = new Set();
-      }
+
+<%# UI 업데이트를 위한 JavaScript %>
+<%= turbo_stream.replace "message-form-script" do %>
+  <div id="message-form-script" style="display: none;">
+    <script>
+      // 중복 방지를 위한 메시지 ID 저장
+      if (!window.processedMessageIds) window.processedMessageIds = new Set();
       window.processedMessageIds.add(<%= @message.id %>);
-      
-      // 현재 사용자 ID 저장 (중복 방지용)
       window.currentUserId = <%= current_user.id %>;
       
       // 스크롤 및 입력 필드 초기화
       document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
       document.querySelector('input[name="message[content]"]').value = '';
-    })();
-  </script>
+    </script>
+  </div>
 <% end %>
