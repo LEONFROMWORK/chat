@@ -34,26 +34,15 @@ export default class extends Controller {
         },
 
         received: (data) => {
+          console.log('Received broadcast:', data)
           this.messagesTarget.insertAdjacentHTML('beforeend', data.message)
           this.scrollToBottom()
-        },
-        
-        speak: (message) => {
-          this.perform('speak', { message: message })
         }
       }
     )
   }
 
-  sendMessage(event) {
-    event.preventDefault()
-    const message = this.messageInputTarget.value.trim()
-    
-    if (message.length > 0 && this.subscription) {
-      this.subscription.perform('speak', { message: message })
-      this.messageInputTarget.value = ''
-    }
-  }
+  // Removed sendMessage method - form submits normally via Turbo
 
   scrollToBottom() {
     if (this.messagesTarget) {

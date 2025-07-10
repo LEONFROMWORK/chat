@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Action Cable Test</title>
+    <script>
+        console.log('Starting Action Cable test...');
+        
+        // Try to establish WebSocket connection
+        try {
+            const ws = new WebSocket('ws://localhost:3001/cable');
+            
+            ws.onopen = function() {
+                console.log('WebSocket connected!');
+                // Send subscription message
+                const message = {
+                    command: 'subscribe',
+                    identifier: JSON.stringify({
+                        channel: 'ChatRoomChannel',
+                        chat_room_id: 1
+                    })
+                };
+                ws.send(JSON.stringify(message));
+            };
+            
+            ws.onmessage = function(event) {
+                console.log('Received message:', event.data);
+            };
+            
+            ws.onerror = function(error) {
+                console.error('WebSocket error:', error);
+            };
+            
+            ws.onclose = function(event) {
+                console.log('WebSocket closed:', event.code, event.reason);
+            };
+        } catch (error) {
+            console.error('Failed to create WebSocket:', error);
+        }
+    </script>
+</head>
+<body>
+    <h1>Action Cable Test</h1>
+    <p>Check the browser console for connection status</p>
+</body>
+</html>

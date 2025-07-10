@@ -876,3 +876,19 @@ Filter chain halted as :require_user rendered or redirected
 Completed 302 Found in 118ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 7.9ms)
 
 
+Started GET "/cable" for ::1 at 2025-07-10 12:09:18 +0900
+Started GET "/cable"[non-WebSocket] for ::1 at 2025-07-10 12:09:19 +0900
+Failed to upgrade to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: , HTTP_UPGRADE: )
+Finished "/cable"[non-WebSocket] for ::1 at 2025-07-10 12:09:19 +0900
+Started GET "/" for ::1 at 2025-07-10 12:10:40 +0900
+Processing by ChatRoomsController#index as */*
+Redirected to http://localhost:3001/login
+Filter chain halted as :require_user rendered or redirected
+Completed 302 Found in 114ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/cable" for ::1 at 2025-07-10 12:10:40 +0900
+Started GET "/cable" [WebSocket] for ::1 at 2025-07-10 12:10:40 +0900
+Request origin not allowed: 
+Failed to upgrade to WebSocket (REQUEST_METHOD: GET, HTTP_CONNECTION: Upgrade, HTTP_UPGRADE: websocket)
+Finished "/cable" [WebSocket] for ::1 at 2025-07-10 12:10:40 +0900
